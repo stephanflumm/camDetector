@@ -26,6 +26,7 @@ TinyGPSPlus gps;
 // The serial connection to the GPS device
 SoftwareSerial ss(RXPin, TXPin);
 
+//
 void setup()
 {
   Serial.begin(115200);
