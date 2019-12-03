@@ -2,11 +2,11 @@
 #include <math.h>
 #include <TinyGPS++.h>
 #include <SoftwareSerial.h>
-#include "Locations.h"
-
-//Change depending on location
-#define LOCATION MELBOURNE
-
+/*
+   This sample sketch demonstrates the normal use of a TinyGPS++ (TinyGPSPlus) object.
+   It requires the use of SoftwareSerial, and assumes that you have a
+   4800-baud serial GPS device hooked up on pins 4(rx) and 3(tx).
+*/
 static const int RXPin = 10, TXPin = 11;
 static const uint32_t GPSBaud = 9600;
 float d;
@@ -15,6 +15,7 @@ static const uint8_t speakerPin = 12;
 void matcher();
 void displayInfo();
 void soundAlert(int pitch);
+
 
 
 float dlat, dlong, currentLat, currentLong;
@@ -67,8 +68,8 @@ void matcher()
 {
   for (int i = 0; i < 270; i++)
   {
-    dlat = cams[i][0];
-    dlong= cams[i][1];
+    dlat = melbCams[i][0];
+    dlong= melbCams[i][1];
     double distanceThreshold = 1000000;
     if(gps.distanceBetween(dlat, dlong, currentLat, currentLong) < distanceThreshold)
     {
