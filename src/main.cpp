@@ -2,11 +2,11 @@
 #include <math.h>
 #include <TinyGPS++.h>
 #include <SoftwareSerial.h>
-#include "Locations.h"
+#include "Locations_Perth.h"
+//#include "Locations_Melbourne.h"
+
 
 //Change depending on location
-#define LOCATION MELBOURNE
-
 static const int RXPin = 10, TXPin = 11;
 static const uint32_t GPSBaud = 9600;
 float d;
@@ -18,6 +18,7 @@ void soundAlert(int pitch);
 
 
 float dlat, dlong, currentLat, currentLong;
+
 // The TinyGPS++ object
 TinyGPSPlus gps;
 
@@ -28,7 +29,6 @@ void setup()
 {
   Serial.begin(115200);
   ss.begin(GPSBaud);
-
 }
 
 void loop()
@@ -38,7 +38,7 @@ void loop()
     if (gps.encode(ss.read()))
       displayInfo();
       matcher();
-  delay(100);
+  
 
   if (millis() > 5000 && gps.charsProcessed() < 10)
   {
@@ -47,9 +47,9 @@ void loop()
   }
 }
 
+
 void displayInfo()
 {
-  //Serial.print(F("Location: ")); 
   if (gps.location.isValid())
   {
     currentLat = roundf(100 *gps.location.lat())/100;
@@ -63,9 +63,10 @@ void displayInfo()
 }
 
 
+
 void matcher()
 {
-  for (int i = 0; i < 270; i++)
+  for (int i = 0; i < NUMBER_OF_CAMS; i++)
   {
     dlat = cams[i][0];
     dlong= cams[i][1];
@@ -91,13 +92,11 @@ void matcher()
     }
   }
 }
+
+
     
 void soundAlert(int pitch)
 {
-
   tone(speakerPin, 20, 500);
-
-
- 
 }
   

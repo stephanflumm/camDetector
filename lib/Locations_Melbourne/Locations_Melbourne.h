@@ -1,8 +1,9 @@
-#ifndef LOCATIONS_H
-#define LOCATIONS_H
+#ifndef LOCATIONS_MELBOURNE
+#define LOCATIONS_MELBOURNE
 
-#if LOCATION == MELBOURNE
-float cams[270][2]={
+#define NUMBER_OF_CAMS 270
+
+float cams[NUMBER_OF_CAMS][2]={
 {-37.873549179776, 144.73675131798}, //Princes Freeway Point Cook
 {-37.85696713827, 144.98267501593}, //St Kilda
 {-37.857985757118, 144.98067140579}, //St Kilda
@@ -273,7 +274,6 @@ float cams[270][2]={
 {-38.128335785904, 145.13394892216}, //Seaford
 };  
 #endif
-
 
 
 #endif
